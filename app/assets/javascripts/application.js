@@ -13,4 +13,13 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+//
+//= xrequire jquery
+//= require jquery/jquery-3.1.1.min
+//= require bootstrap-sprockets
+//
+//= require metisMenu/jquery.metisMenu
+//= require pace/pace.min
+//= require peity/jquery.peity.min
+//= require slimscroll/jquery.slimscroll.min
+//= require inspinia

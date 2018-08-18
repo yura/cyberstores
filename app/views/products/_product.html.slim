@@ -1,0 +1,14 @@
+.col-md-3
+  .ibox
+    .ibox-content.product-box
+      .product-imitation
+        | [ INFO ]
+      .product-desc
+        span.product-price= product.price
+        small.text-muted Category
+        = link_to product.name, product, class: 'product-name'
+        .small.m-t-xs= product.description
+        .m-t.text-righ
+          a.btn.btn-xs.btn-outline.btn-primary href="#" 
+            | Info
+            i.fa.fa-long-arrow-right

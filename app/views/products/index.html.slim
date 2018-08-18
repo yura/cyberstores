@@ -1,0 +1,17 @@
+.row.wrapper.border-bottom.white-bg.page-heading
+  .col-lg-10
+    h2= t('.title')
+    ol.breadcrumb
+      li.breadcrumb-item
+        a href="index.html"  Home
+      li.breadcrumb-item
+        a E-commerce
+      li.breadcrumb-item.active
+        strong Products grid
+  .col-lg-2
+.wrapper.wrapper-content.animated.fadeInRight
+  - @products.in_groups_of(4, false).each do |row|
+    .row
+      = render partial: "product", collection: row
+
+
