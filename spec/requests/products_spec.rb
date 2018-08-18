@@ -55,5 +55,27 @@ RSpec.describe 'Products', type: :request do
       expect(product.description).to eq('The best book on Haskell')
       expect(product.price).to eq(55)
     end
+
+    it 'does not update a product with invalid data' do
+      visit edit_product_path(product)
+      fill_in 'Name', with: ''
+      fill_in 'Description', with: 'The best book on Haskell'
+      fill_in 'Price', with: '55'
+      click_on 'Save'
+
+      product.reload
+      expect(product.description).to_not eq('The best book on Haskell')
+      expect(product.price).to_not eq(55)
+    end
+  end
+
+  describe 'delete product' do
+    let!(:product) { create(:product) }
+
+    it 'delete existing product', js: true do
+      expect do
+        delete "/products/#{product.id}"
+      end.to change { Product.count }.by(-1)
+    end
   end
 end
