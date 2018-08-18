@@ -28,5 +28,15 @@ RSpec.describe 'Products', type: :request do
       expect(product.description).to eq('The best book on Haskell')
       expect(product.price).to eq(55)
     end
+
+    it 'does not create a invalid product' do
+      visit new_product_path
+      fill_in 'Description', with: 'The best book on Haskell'
+      fill_in 'Price', with: 55
+      click_on 'Save'
+
+      product = Product.last
+      expect(product).to be_nil
+    end
   end
 end
