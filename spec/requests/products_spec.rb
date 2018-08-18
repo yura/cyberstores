@@ -14,7 +14,7 @@ RSpec.describe 'Products', type: :request do
     end
   end
 
-  describe "POST /products" do
+  describe 'create new product' do
     it 'creates new product' do
       visit new_product_path
       fill_in 'Name', with: 'The Haskell Book'
@@ -37,6 +37,23 @@ RSpec.describe 'Products', type: :request do
 
       product = Product.last
       expect(product).to be_nil
+    end
+  end
+
+  describe 'update existing product' do
+    let!(:product) { create(:product) }
+
+    it 'updates existing product' do
+      visit edit_product_path(product)
+      fill_in 'Name', with: 'The Haskell Book'
+      fill_in 'Description', with: 'The best book on Haskell'
+      fill_in 'Price', with: '55'
+      click_on 'Save'
+
+      product.reload
+      expect(product.name).to eq('The Haskell Book')
+      expect(product.description).to eq('The best book on Haskell')
+      expect(product.price).to eq(55)
     end
   end
 end

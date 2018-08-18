@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: 79ebd3433177650e42b58e10d9e676068a977d17
+  branch: master
+  specs:
+    faker (1.9.1)
+      i18n (>= 0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -267,6 +275,7 @@ DEPENDENCIES
   codecov
   coffee-rails
   factory_bot_rails
+  faker!
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
