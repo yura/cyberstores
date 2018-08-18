@@ -9,7 +9,7 @@
       li.breadcrumb-item.active
         strong Products grid
   .col-lg-2
-.wrapper.wrapper-content.animated.fadeInRight
+.wrapper.wrapper-content.animated.fadeInRight.products
   - @products.in_groups_of(4, false).each do |row|
     .row
       = render partial: "product", collection: row
