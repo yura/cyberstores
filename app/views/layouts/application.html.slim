@@ -20,7 +20,7 @@ html
             /! <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button"
             /! <i class="fa fa-reorder"></i
             /! </button
-            a.navbar-brand href="#"  Inspinia
+            a.navbar-brand.store-name href="#"= current_store.name
             button.navbar-toggler aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbar" data-toggle="collapse" type="button"
               i.fa.fa-reorder
             /! </div
@@ -84,7 +84,7 @@ html
         .footer
           .float-right
             | 10GB of
-            strong 250GB
+            strong=<> "250GB"
             | Free.
           div
             strong Copyright

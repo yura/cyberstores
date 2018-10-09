@@ -1,81 +1,79 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Products', type: :request do
   describe 'GET /products' do
-    let!(:cupcake) { create(:product, name: 'Cupcake') }
-    let!(:cheesecake) { create(:product, name: 'Cheesecake') }
-
     it 'renders list of products' do
-      visit '/products'
-      within('.products') do
-        expect(page).to have_content('Cupcake')
-        expect(page).to have_content('Cheesecake')
-      end
+      create(:product, name: 'Cheesecake')
+      get products_path
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include('Cheesecake')
     end
   end
 
-  describe 'create new product' do
+  describe 'GET /products/1' do
+    subject(:show_product) { get product_path(product) }
+
+    let(:product) { create(:product) }
+
+    it 'renders product page' do
+      show_product
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include(product.name)
+    end
+  end
+
+  describe 'GET /products/new' do
+    it 'renders new product form' do
+      get new_product_path
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include('New Product')
+    end
+  end
+
+  describe 'POST /products' do
+    subject(:create_product) do
+      post products_path, params: { product: { name: 'Cupcake' } }
+    end
+
     it 'creates new product' do
-      visit new_product_path
-      fill_in 'Name', with: 'The Haskell Book'
-      fill_in 'Description', with: 'The best book on Haskell'
-      fill_in 'Price', with: 55
-      click_on 'Save'
-
-      product = Product.last
-      expect(product).to_not be_nil
-      expect(product.name).to eq('The Haskell Book')
-      expect(product.description).to eq('The best book on Haskell')
-      expect(product.price).to eq(55)
-    end
-
-    it 'does not create a invalid product' do
-      visit new_product_path
-      fill_in 'Description', with: 'The best book on Haskell'
-      fill_in 'Price', with: 55
-      click_on 'Save'
-
-      product = Product.last
-      expect(product).to be_nil
+      expect { create_product }.to change(Product, :count).by(1)
     end
   end
 
-  describe 'update existing product' do
-    let!(:product) { create(:product) }
+  describe 'GET /products/1/edit' do
+    subject(:edit_product) { get edit_product_path(product) }
+
+    let(:product) { create(:product, name: 'Cheesecake') }
+
+    it 'renders edit product form' do
+      edit_product
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include('Editing Product')
+    end
+  end
+
+  describe 'PATCH /products/1' do
+    subject(:update_product) do
+      patch product_path(product), params: { product: { name: 'Best Book' } }
+    end
+
+    let(:product) { create(:product) }
+
+    it 'redirects to products page'
 
     it 'updates existing product' do
-      visit edit_product_path(product)
-      fill_in 'Name', with: 'The Haskell Book'
-      fill_in 'Description', with: 'The best book on Haskell'
-      fill_in 'Price', with: '55'
-      click_on 'Save'
-
+      update_product
       product.reload
-      expect(product.name).to eq('The Haskell Book')
-      expect(product.description).to eq('The best book on Haskell')
-      expect(product.price).to eq(55)
-    end
-
-    it 'does not update a product with invalid data' do
-      visit edit_product_path(product)
-      fill_in 'Name', with: ''
-      fill_in 'Description', with: 'The best book on Haskell'
-      fill_in 'Price', with: '55'
-      click_on 'Save'
-
-      product.reload
-      expect(product.description).to_not eq('The best book on Haskell')
-      expect(product.price).to_not eq(55)
+      expect(product.name).to eq('Best Book')
     end
   end
 
-  describe 'delete product' do
-    let!(:product) { create(:product) }
-
-    it 'delete existing product', js: true do
-      expect do
-        delete "/products/#{product.id}"
-      end.to change { Product.count }.by(-1)
+  describe 'DELETE /products/1' do
+    it 'delete existing product' do
+      product = create(:product)
+      expect { delete product_path(product) }.to change(Product, :count).by(-1)
     end
   end
 end

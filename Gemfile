@@ -74,6 +74,7 @@ gem 'font-awesome-rails' #, '4.7.0.1'
 group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   gem 'factory_bot_rails'
+  gem 'rubocop-rspec'
 end
 
 group :test do
