@@ -5,5 +5,6 @@ FactoryBot.define do
     name { Faker::Commerce.product_name }
     description { Faker::Lorem.sentence }
     price { Faker::Commerce.price(10..40) }
+    store
   end
 end

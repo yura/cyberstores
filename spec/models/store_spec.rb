@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Store, type: :model do
   it { should have_many(:domains) }
+  it { should have_many(:products) }
 
   let(:default_store) { create(:store, :default) }
 

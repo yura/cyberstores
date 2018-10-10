@@ -3,12 +3,32 @@
 require 'rails_helper'
 
 RSpec.describe 'Products', type: :request do
+  let(:store) { create(:store) }
+
   describe 'GET /products' do
-    it 'renders list of products' do
-      create(:product, name: 'Cheesecake')
-      get products_path
+    subject(:get_products) { get products_path }
+
+    before do
+      allow_any_instance_of(ProductsController).to receive(:current_store).and_return(store)
+      create(:product, name: 'Cheesecake', store: store)
+    end
+
+    it 'renders response with 200 status' do
+      get_products
       expect(response).to have_http_status(:ok)
+    end
+
+    it 'renders products from the current store' do
+      get_products
       expect(response.body).to include('Cheesecake')
+    end
+
+    it 'does not render products from another store' do
+      other_store = create(:store)
+      create(:product, name: 'Cupcake', store: other_store)
+
+      get_products
+      expect(response.body).not_to include('Cupcake')
     end
   end
 

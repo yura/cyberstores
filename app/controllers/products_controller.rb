@@ -2,12 +2,14 @@
 
 # Product actions
 class ProductsController < ApplicationController
+  include ApplicationHelper
+
   before_action :set_product, only: %i[show edit update destroy]
 
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = current_store.products
   end
 
   # GET /products/1
@@ -26,6 +28,7 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
+    @product.store = current_store
 
     respond_to do |format|
       if @product.save

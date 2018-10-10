@@ -1,5 +1,6 @@
 class Store < ApplicationRecord
   has_many :domains
+  has_many :products
 
   def self.current_store(request)
     if RESERVED_DOMAINS.include?(request.domain)

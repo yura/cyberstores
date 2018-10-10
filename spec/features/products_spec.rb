@@ -3,11 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe 'Products page', type: :feature do
+  let(:store) { create(:store) }
+
   describe 'list of products' do
     it 'renders list of products' do
-      create(:product, name: 'Cheesecake')
-      visit '/'
+      product = create(:product, name: 'Cheesecake', store: store)
+      visit_store(store)
       expect(page).to have_css('.products .product-name', text: 'Cheesecake')
+    end
+
+    it 'does not render product from the other store' do
+      other_store = create(:store)
+      create(:product, name: 'Cupcake', store: other_store)
+      visit_store(store)
+      expect(page).to have_css('.products .product-name', text: 'Cupcake')
     end
   end
 

@@ -5,7 +5,6 @@
 
 ## TODO
 
-* link products to stores
 * application layout cleanup
 * products#show
 * add to cart
