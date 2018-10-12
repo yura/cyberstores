@@ -5,8 +5,10 @@
 
 ## TODO
 
-* application layout cleanup
 * products#show
 * add to cart
 * authorization for products
+* default_locale for store
+* available_locales for store
+* custom translations
 

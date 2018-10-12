@@ -3,7 +3,7 @@ html
   head
     meta charset="utf-8" /
     meta content="width=device-width, initial-scale=1.0" name="viewport" /
-    title Cyberstores
+    title= current_store.name
     /! Toastr style
     / link href="css/plugins/toastr/toastr.min.css" rel="stylesheet" /
     / link href="css/animate.css" rel="stylesheet" /
@@ -20,48 +20,16 @@ html
             /! <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button"
             /! <i class="fa fa-reorder"></i
             /! </button
-            a.navbar-brand.store-name href="#"= current_store.name
+            a.navbar-brand.store-name href="/"= current_store.name
             button.navbar-toggler aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbar" data-toggle="collapse" type="button"
               i.fa.fa-reorder
             /! </div
             #navbar.navbar-collapse.collapse
               ul.nav.navbar-nav.mr-auto
                 li.active
-                  a aria-expanded="false" href="layouts.html" role="button"  Back to main Layout page
-                li.dropdown
-                  a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"  Menu item
-                  ul.dropdown-menu role="menu"
-                    li
-                      a href=""  Menu item
-                    li
-                      a href=""  Menu item
-                    li
-                      a href=""  Menu item
-                    li
-                      a href=""  Menu item
-                li.dropdown
-                  a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"  Menu item
-                  ul.dropdown-menu role="menu"
-                    li
-                      a href=""  Menu item
-                    li
-                      a href=""  Menu item
-                    li
-                      a href=""  Menu item
-                    li
-                      a href=""  Menu item
-                li.dropdown
-                  a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"  Menu item
-                  ul.dropdown-menu role="menu"
-                    li
-                      a href=""  Menu item
-                    li
-                      a href=""  Menu item
-                    li
-                      a href=""  Menu item
-                    li
-                      a href=""  Menu item
-                li.dropdown
+                  a aria-expanded="false" href="/" role="button"
+                    = current_store.short_description
+                /! li.dropdown
                   a.dropdown-toggle aria-expanded="false" data-toggle="dropdown" href="#" role="button"  Menu item
                   ul.dropdown-menu role="menu"
                     li
@@ -74,18 +42,17 @@ html
                       a href=""  Menu item
               ul.nav.navbar-top-links.navbar-right
                 li
-                  a href="login.html"
-                    i.fa.fa-sign-out
-                    | Log out
+                  a href="/"
+                    /! i.fa.fa-sign-out
+                    | Телефон в Барнауле:
+                    =< current_store.phone
         .wrapper.wrapper-content
           .container
             = yield
 
         .footer
-          .float-right
-            | 10GB of
-            strong=<> "250GB"
-            | Free.
+          .float-right= current_store.address
           div
-            strong Copyright
-            | Example Company &copy; 2014-2018            
+            strong &copy;
+            =<> current_store.name
+            | 2010-#{Time.now.year}

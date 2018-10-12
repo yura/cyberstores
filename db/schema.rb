@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_10_115009) do
+ActiveRecord::Schema.define(version: 2018_10_12_165951) do
 
   create_table "domains", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "store_id"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 2018_10_10_115009) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "default", default: false
+    t.string "short_description"
+    t.string "phone"
+    t.string "address"
   end
 
 end

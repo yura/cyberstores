@@ -5,6 +5,8 @@ RESERVED_DOMAINS = [
   DEFAULT_STORE_DOMAIN,
   'cyberstores.ru',
   'cyberstores.dev',
+  'cyberstores.test',
   'test.host',
-  'example.com'
+  'example.com',
+  'localhost'
 ]
