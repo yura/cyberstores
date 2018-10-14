@@ -81,7 +81,10 @@ RSpec.describe 'Products', type: :request do
 
     let(:product) { create(:product) }
 
-    it 'redirects to products page'
+    it 'redirects to products page' do
+      update_product
+      expect(response).to redirect_to(product_path(product))
+    end
 
     it 'updates existing product' do
       update_product

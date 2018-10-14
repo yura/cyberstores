@@ -1,0 +1,19 @@
+h1 Корзина
+
+- if @order.nil? || @order.order_items.empty?
+  p Корзина пуста
+- else
+  table.table
+    tr
+      th Название
+      th Цена
+      th Количество
+      th Сумма
+    - @order.order_items.each do |order_item|
+      tr
+        th.product-name= order_item.name
+        th= order_item.price
+        th= order_item.quantity
+        th= order_item.sum
+
+

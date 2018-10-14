@@ -72,13 +72,13 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'font-awesome-rails' #, '4.7.0.1'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.7'
   gem 'factory_bot_rails'
+  gem 'faker', github: 'stympy/faker', branch: 'master'
+  gem 'rspec-rails', '~> 3.7'
   gem 'rubocop-rspec'
 end
 
 group :test do
   gem 'codecov', require: false
-  gem 'faker', github: 'stympy/faker', branch: 'master'
   gem 'shoulda-matchers', '~> 3.1'
 end

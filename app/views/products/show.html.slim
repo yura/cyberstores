@@ -1,0 +1,7 @@
+h1= @product.name
+.description= @product.description
+.price= @product.price
+
+= form_for OrderItem.new(product: @product) do |f|
+  = f.hidden_field :product_id
+  = f.submit 'Добавить в корзину'
