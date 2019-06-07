@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 5.2.3'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 # Use Puma as the app server
@@ -17,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails' #, '~> 4.2'
+gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -52,7 +52,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15', '< 4.0'
+  gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
@@ -73,12 +73,13 @@ gem 'font-awesome-rails' #, '4.7.0.1'
 
 group :development, :test do
   gem 'factory_bot_rails'
-  gem 'faker', github: 'stympy/faker', branch: 'master'
-  gem 'rspec-rails', '~> 3.7'
+  gem 'faker'
+  gem 'rspec-rails', '~> 3.8'
+  gem 'rubocop', require: false
   gem 'rubocop-rspec'
 end
 
 group :test do
   gem 'codecov', require: false
-  gem 'shoulda-matchers', '~> 3.1'
+  gem 'shoulda-matchers'
 end

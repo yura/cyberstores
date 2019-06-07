@@ -7,5 +7,5 @@ Metrics/BlockLength:
 
 require: rubocop-rspec
 
-Layout/IndentArray:
+Layout/IndentFirstArrayElement:
   EnforcedStyle: consistent
