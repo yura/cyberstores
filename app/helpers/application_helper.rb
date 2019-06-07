@@ -8,7 +8,7 @@ module ApplicationHelper
 
   def current_order
     store = current_store
-    if session[:orders] && order_id = session[:orders][store.id]
+    if session[:orders] && order_id = session[:orders][store.id.to_s]
       Order.find_by(id: order_id, store_id: store.id)
     end
   end
@@ -19,7 +19,7 @@ module ApplicationHelper
       store = current_store
       order = Order.create(store: store)
       session[:orders] ||= {}
-      session[:orders][store.id] = order.id
+      session[:orders][store.id.to_s] = order.id
     end
     order
   end
