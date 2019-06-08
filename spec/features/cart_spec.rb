@@ -25,13 +25,9 @@ RSpec.describe 'Cart', type: :feature do
       expect(OrderItem.last.price).to eq(product.price)
     end
 
-    it 'adds created order to session' do
-      expect(session[:orders][store.id.to_s]).to eq(Order.last)
-    end
-
     it 'renders product name in the cart' do
       add_product_to_cart
-      expect(page).to have_content(product.name)
+      expect(page).to have_css('table#cart td.product-name', text: product.name)
     end
   end
 end

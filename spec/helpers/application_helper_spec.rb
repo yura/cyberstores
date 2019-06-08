@@ -26,7 +26,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     it "returns order by id stored in the session" do
       session[:orders] = {}
-      session[:orders][store.id] = order.id
+      session[:orders][store.id.to_s] = order.id
       expect(helper.current_order).to eq(order)
     end
   end
@@ -42,7 +42,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     it 'sets session[:orders][store_id] value' do
       order = helper.current_order!
-      expect(session[:orders][store.id]).to eq(order.id)
+      expect(session[:orders][store.id.to_s]).to eq(order.id)
     end
 
     it 'does not create new order on second call' do
